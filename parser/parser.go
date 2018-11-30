@@ -884,13 +884,7 @@ func (p *parser) primary() Expr {
 			case NAME:
 				args = append(args, &StrExpr{p.val})
 				p.next()
-			case STRING:
-				fallthrough
-			case NUMBER:
-				fallthrough
-			case TRUE:
-				fallthrough
-			case FALSE:
+			case STRING, NUMBER, TRUE, FALSE:
 				args = append(args, p.expr())
 			default:
 				panic(p.error("expected STRING/NUMBER/TRUE/FALSE/NAME as object key instead of %s", p.tok))
